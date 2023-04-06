@@ -108,6 +108,27 @@ const swaggerDocument = {
                 "responses": {}
             }
         },
+        "/user/profile": {
+            "get": {
+                "tags": [
+                  "User"
+                ],
+                "description": "get User profile",
+                "consumes": [
+                  "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                  {
+                    "name": "Authorization",
+                    "in": "header",
+                    "description": "Enter jwt token for authentication",
+                    "required": true,
+                    "type": "string"
+                  }
+                ],
+                "responses": {}
+              }
+        }
     }
 }
 
