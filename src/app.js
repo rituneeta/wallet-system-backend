@@ -5,6 +5,7 @@ import bodyParser from "body-parser";
 import { initDbConnection } from "./database.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "./swagger.js";
+import router from './routes/api.js';
 
 dotenv.config();
 const app = express();
@@ -15,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use('/api-swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+app.use('/api', router);
 
 app.listen(PORT, async (error) => {
     if (!error) {

@@ -23,7 +23,57 @@ const swaggerDocument = {
             "description": "User related api's"
         }
     ],
-    "paths": {}
+    "paths": {
+        "/user/signup": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "description": "signUp API",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "parameters": [
+                    {
+                        "name": "firstName",
+                        "in": "formData",
+                        "description": "FirstName",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "lastName",
+                        "in": "formData",
+                        "description": "LastName",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "email",
+                        "in": "formData",
+                        "description": "email",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "formData",
+                        "description": "password",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "passcode",
+                        "in": "formData",
+                        "description": "passcode",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {}
+            }
+        },
+    }
 }
 
 export default swaggerDocument;
