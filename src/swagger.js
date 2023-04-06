@@ -128,7 +128,56 @@ const swaggerDocument = {
                 ],
                 "responses": {}
               }
-        }
+        },
+        "/user/update-profile": {
+            "patch": {
+              "tags": [
+                "User"
+              ],
+              "description": "User api",
+              "consumes": [
+                "application/x-www-form-urlencoded"
+              ],
+              "parameters": [
+                {
+                  "name": "Authorization",
+                  "in": "header",
+                  "description": "Enter jwt token for authentication",
+                  "required": true,
+                  "type": "string"
+                },
+                {
+                  "name": "firstName",
+                  "in": "formData",
+                  "description": "User's firstName",
+                  "required": false,
+                  "type": "string"
+                },
+                {
+                  "name": "lastName",
+                  "in": "formData",
+                  "description": "User's lastName",
+                  "required": false,
+                  "type": "string"
+                },
+                {
+                  "name": "email",
+                  "in": "formData",
+                  "description": "Enter your email",
+                  "required": false,
+                  "type": "string"
+                },
+                {
+                  "name": "passcode",
+                  "in": "formData",
+                  "description": "User's passcode",
+                  "required": false,
+                  "type": "string"
+                }
+              ],
+              "responses": {}
+            }
+          },
     }
 }
 
