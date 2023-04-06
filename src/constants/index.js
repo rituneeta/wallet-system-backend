@@ -6,7 +6,7 @@ export const MESSAGES = {
   user_not_found: 'An account with given info does not exist.',
   profile_fetched: "Profile fetched successfully.",
   profileUpdated: "Profile updated successfully.",
-  users_fetched: "All Users fetched successfully"
+  users_fetched: "Users fetched successfully"
 }
 
 export const CODE = {
