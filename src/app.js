@@ -5,7 +5,7 @@ import bodyParser from "body-parser";
 import { initDbConnection } from "./database.js";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "./swagger.js";
-import router from './routes/api.js';
+import router from './routes/index.js';
 
 dotenv.config();
 const app = express();

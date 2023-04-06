@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { userTokenResponse } from "../../utils/token-response.js";
-import { bcryptPassword } from '../../utils/appUtils.js';
-import { selectOne, addData } from '../../queryService/queryService.js';
+import { bcryptPassword, comparePassword } from '../../utils/appUtils.js';
+import {selectOne, addData} from '../../queryService/queryService.js';
 import { userModel } from '../../models/user.model.js';
 import { MESSAGES } from '../../constants/index.js';
 
@@ -22,5 +22,23 @@ export const signUpService = async (params) => {
         }
     } else {
         throw new Error(MESSAGES.acc_already_exists);
+    }
+}
+
+export const loginService = async (params) => {
+    let userDetails = await selectOne(userModel, { email: params.email })
+
+    if (userDetails) {
+        let isPasswordMatch = await comparePassword(params.password, userDetails.password)
+        if (isPasswordMatch) {
+            let token = await userTokenResponse(userDetails);
+            const response = _.pick(userDetails, ['id', 'firstName', 'lastName', 'email','passcode', 'createdAt', 'updatedAt'])
+            return { ...token, ...response }
+        } else {
+            throw new Error(MESSAGES.invalid_password)
+        }
+    } else {
+        throw new Error(MESSAGES.user_not_found)
+
     }
 }

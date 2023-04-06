@@ -31,3 +31,7 @@ export const successResponse = (res, params, message) => {
 export const bcryptPassword = async (myPlaintextPassword) => {
     return bcrypt.hash(myPlaintextPassword, 10);
 }
+
+export const comparePassword = async (myPlaintextPassword, hash) => {
+    return bcrypt.compare(myPlaintextPassword, hash);
+}
