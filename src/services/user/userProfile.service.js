@@ -1,10 +1,11 @@
 import { userModel } from "../../models/user.model.js"
 import { selectOne, updateData } from '../../queryService/queryService.js';
 import _ from 'lodash';
+import { MESSAGES } from '../../constants/index.js';
 
 export const getProfileService = async (user) => {
     let response = await selectOne(userModel, { id: user.id })
-    return _.pick(response, ['id', 'firstName', 'lastName', 'email', 'passcode', 'createdAt', 'updatedAt'])
+    return _.pick(response, ['id', 'firstName', 'lastName', 'email', 'passcode','phoneNumber', 'createdAt', 'updatedAt'])
 }
 
 export const updateUserProfileService = async(params, user) => {
@@ -27,6 +28,6 @@ export const updateUserProfileService = async(params, user) => {
         update.model = userModel;
         return updateData(update,query);
     } else {
-        throw new Error(constants.MESSAGES.user_not_found)
+        throw new Error(MESSAGES.user_not_found)
     }
 }

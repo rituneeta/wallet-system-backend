@@ -6,7 +6,8 @@ export const MESSAGES = {
   user_not_found: 'An account with given info does not exist.',
   profile_fetched: "Profile fetched successfully.",
   profileUpdated: "Profile updated successfully.",
-  users_fetched: "Users fetched successfully"
+  users_fetched: "Users fetched successfully",
+  incorrect_passcode: "Passcord is incorrect. please enter a correct passcode."
 }
 
 export const CODE = {
