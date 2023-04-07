@@ -283,6 +283,34 @@ const swaggerDocument = {
         "responses": {}
       }
     },
+    "/user/passbook": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "get User Passbook Lists",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter jwt token for authentication",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "receiverUserId",
+            "in": "query",
+            "description": "get the list on the basis of receiver user Id",
+            "required": false,
+            "type": "integer"
+          },
+        ],
+        "responses": {}
+      }
+    }
   }
 }
 

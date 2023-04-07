@@ -1,7 +1,7 @@
 import { userModel } from "../../models/user.model.js";
 import { walletModel } from "../../models/wallet.model.js"
 import { transactionModel } from '../../models/transaction.model.js';
-import { selectOne, addData, updateData } from '../../queryService/queryService.js';
+import { selectOne, addData, updateData, selectAll } from '../../queryService/queryService.js';
 import { MESSAGES } from '../../constants/index.js';
 import _ from 'lodash';
 
@@ -63,4 +63,12 @@ export const sendWalletService = async (userId, params) =>{
    } else {
       throw new Error(MESSAGES.incorrect_passcode)
    }
+}
+
+export const getPassbookService = async(userId, receiverUserId) => {
+   const condition = {
+      senderUserId: userId
+   }
+   if(receiverUserId) condition['receiverUserId'] = receiverUserId;
+ return await selectAll(transactionModel, condition);
 }

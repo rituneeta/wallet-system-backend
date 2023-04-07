@@ -25,7 +25,7 @@ export const transactionModel = sequelize.define("transaction", {
         allowNull:true,
     },
     receiverUserId:{
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull:true,
     },
     // operationType:{

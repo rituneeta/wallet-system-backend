@@ -5,7 +5,7 @@ import { validateBody } from "../middleware/joiSchemaValidation.js";
 import { signupSchema, loginSchema, userProfileUpdateSchema } from "../apiSchema/userSchema.js";
 import { walletAddSchema, walletSendSchema } from '../apiSchema/walletSchema.js';
 import { validateUserToken } from "../middleware/tokenValidate.js";
-import { addWalletController, sendWalletController } from '../controllers/user/userWallet.controller.js';
+import { addWalletController, sendWalletController, getPassbookController } from '../controllers/user/userWallet.controller.js';
 
 const userRouter = express.Router();
 
@@ -20,6 +20,8 @@ userRouter.patch('/update-profile', validateBody(userProfileUpdateSchema), valid
 
 userRouter.post("/wallet-add", validateBody(walletAddSchema), validateUserToken, addWalletController);
 
-userRouter.post("/wallet-send", validateBody(walletSendSchema), validateUserToken, sendWalletController)
+userRouter.post("/wallet-send", validateBody(walletSendSchema), validateUserToken, sendWalletController);
+
+userRouter.get('/passbook', validateUserToken, getPassbookController);
 
 export default userRouter;
