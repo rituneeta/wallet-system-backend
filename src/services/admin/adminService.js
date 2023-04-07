@@ -4,20 +4,20 @@ import { walletModel } from "../../models/wallet.model.js";
 import {selectAll} from '../../queryService/queryService.js';
 import _ from 'lodash';
 
-export const getUserListsService = async(userId) => {
+export const getUsersListService = async(userId) => {
     const condition = userId ? { id : userId }: {}
     return await selectAll(userModel, condition);
 }
 
-export const getUserWalletListsService = async(userId) => {
+export const getUserWalletListService = async(userId) => {
     const condition = userId ? { userId }: {}
     return await selectAll(walletModel, condition);
 }
 
-export const getUserTransactionListsService = async(query) => {
-    const { receiverUserId, senderUserId} = query;
+export const getUserTransactionListService = async(query) => {
+    const { sourceAccountNumber, destinationAccountNumber} = query;
     const condition = {}
-     if(receiverUserId) condition['receiverUserId'] = receiverUserId;
-     if(senderUserId) condition['senderUserId'] = senderUserId;
+     if(sourceAccountNumber) condition['sourceAccountNumber'] = sourceAccountNumber;
+     if(destinationAccountNumber) condition['destinationAccountNumber'] = destinationAccountNumber;
     return await selectAll(transactionModel, condition);
 }

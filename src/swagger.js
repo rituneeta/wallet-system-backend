@@ -297,7 +297,7 @@ const swaggerDocument = {
         "responses": {}
       }
     },
-    "/admin/users-list": {
+    "/admin/users": {
       "get": {
         "tags": [
           "Admin"
@@ -312,7 +312,7 @@ const swaggerDocument = {
             "in": "query",
             "description": "get the list on the basis of user Id",
             "required": false,
-            "type": "string"
+            "type": "integer"
           },
         ],
         "responses": {}
@@ -333,7 +333,7 @@ const swaggerDocument = {
             "in": "query",
             "description": "get the list on the basis of user Id",
             "required": false,
-            "type": "string"
+            "type": "integer"
           },
         ],
         "responses": {}
@@ -350,14 +350,14 @@ const swaggerDocument = {
         ],
         "parameters": [
           {
-            "name": "senderUserId",
+            "name": "sourceAccountNumber",
             "in": "query",
             "description": "get the list on the basis of senderUserId",
             "required": false,
             "type": "integer"
           },
           {
-            "name": "receiverUserId",
+            "name": "destinationAccountNumber",
             "in": "query",
             "description": "get the list on the basis of receiverUserId",
             "required": false,

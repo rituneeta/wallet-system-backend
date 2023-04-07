@@ -1,12 +1,12 @@
 import express from 'express';
-import { getUserLists, getUserWalletLists , getUserTransactionLists} from "../controllers/admin/admin.controller.js";
+import { getUsersListController, getUserWalletListController , getUserTransactionListController} from "../controllers/admin/admin.controller.js";
 
 const adminRouter = express.Router();
 
-adminRouter.get('/users-list', getUserLists);
+adminRouter.get('/users', getUsersListController);
 
-adminRouter.get('/users-wallet', getUserWalletLists);
+adminRouter.get('/users-wallet', getUserWalletListController);
 
-adminRouter.get('/users-transaction', getUserTransactionLists);
+adminRouter.get('/users-transaction', getUserTransactionListController);
 
 export default adminRouter;
