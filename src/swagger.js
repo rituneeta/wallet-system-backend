@@ -236,11 +236,46 @@ const swaggerDocument = {
             "description": "passcode",
             "required": true,
             "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/user/wallet-send": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "send money to wallet",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter jwt token for authentication",
+            "required": true,
+            "type": "string"
           },
           {
-            "name": "phoneNumber",
+            "name": "passcode",
             "in": "formData",
-            "description": "phoneNumber",
+            "description": "passcode",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "amount",
+            "in": "formData",
+            "description": "amount",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "receiverPhoneNumber",
+            "in": "formData",
+            "description": "receiverPhoneNumber",
             "required": true,
             "type": "string"
           }

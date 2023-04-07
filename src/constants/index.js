@@ -7,7 +7,10 @@ export const MESSAGES = {
   profile_fetched: "Profile fetched successfully.",
   profileUpdated: "Profile updated successfully.",
   users_fetched: "Users fetched successfully",
-  incorrect_passcode: "Passcord is incorrect. please enter a correct passcode."
+  incorrect_passcode: "Passcord is incorrect. please enter a correct passcode.",
+  insufficient_amount: "Insufficient amount.",
+  receiver_wallet_not_available: "wallet of this user is not added.",
+  wallet_user_invalid: "user is not added in the wallet table"
 }
 
 export const CODE = {
