@@ -332,6 +332,34 @@ const swaggerDocument = {
         "responses": {}
       }
     },
+    "/admin/users-transaction": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "get User transaction Lists",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "senderUserId",
+            "in": "query",
+            "description": "get the list on the basis of senderUserId",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "receiverUserId",
+            "in": "query",
+            "description": "get the list on the basis of receiverUserId",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {}
+      }
+    }
   }
 }
 
