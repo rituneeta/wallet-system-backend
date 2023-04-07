@@ -185,27 +185,6 @@ const swaggerDocument = {
         "responses": {}
       }
     },
-    "/admin/users-list": {
-      "get": {
-        "tags": [
-          "Admin"
-        ],
-        "description": "get User Lists",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "query",
-            "description": "get the list on the basis of user Id",
-            "required": false,
-            "type": "string"
-          },
-        ],
-        "responses": {}
-      }
-    },
     "/user/wallet-add": {
       "post": {
         "tags": [
@@ -310,7 +289,49 @@ const swaggerDocument = {
         ],
         "responses": {}
       }
-    }
+    },
+    "/admin/users-list": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "get User Lists",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "get the list on the basis of user Id",
+            "required": false,
+            "type": "string"
+          },
+        ],
+        "responses": {}
+      }
+    },
+    "/admin/users-wallet": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "description": "get User Wallet Lists",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "description": "get the list on the basis of user Id",
+            "required": false,
+            "type": "string"
+          },
+        ],
+        "responses": {}
+      }
+    },
   }
 }
 
