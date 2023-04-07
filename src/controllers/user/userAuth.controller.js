@@ -5,17 +5,17 @@ import { MESSAGES, CODE } from "../../constants/index.js"
 export const signUpController = async (req, res) => {
     try {
         const responseFromService = await signUpService(req.body);
-        successResponse(res, responseFromService, MESSAGES.success);
+        successResponse(req, res, responseFromService, MESSAGES.success);
     } catch (error) {
-        errorResponse(res, error, CODE.error_code);
+        errorResponse(req, res, error, CODE.error_code);
     }
 }
 
 export const loginController = async (req, res) => {
     try {
         const responseFromService = await loginService(req.body);
-        successResponse(res, responseFromService, MESSAGES.success);
+        successResponse(req, res, responseFromService, MESSAGES.success);
     } catch (error) {
-        errorResponse(res, error, CODE.error_code);
+        errorResponse(req, res, error, CODE.error_code);
     }
 }

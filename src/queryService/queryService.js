@@ -1,5 +1,6 @@
 import * as constants from "../constants/index.js";
 import _ from "lodash";
+import {loggingModel} from '../models/logging.model.js';
 
 /*
 * function for add details 
@@ -83,4 +84,14 @@ export const selectAll = async (model, condition, attributes = {}) => {
         throw new Error(error);
     }
 
+}
+
+export const addLogging = async (req, res) => {
+    const logginData = {
+        method: req.method,
+        endpoint: req.originalUrl,
+        request: req.body,
+        response: res
+    }
+    await addData(loggingModel, logginData);
 }

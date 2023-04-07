@@ -297,6 +297,27 @@ const swaggerDocument = {
         "responses": {}
       }
     },
+    "/user/logging": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "get api logging list",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter jwt token for authentication",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
     "/admin/users": {
       "get": {
         "tags": [

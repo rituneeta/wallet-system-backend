@@ -5,7 +5,7 @@ import { validateBody } from "../middleware/joiSchemaValidation.js";
 import { signupSchema, loginSchema, userProfileUpdateSchema } from "../apiSchema/userSchema.js";
 import { walletAddSchema, walletSendSchema } from '../apiSchema/walletSchema.js';
 import { validateUserToken } from "../middleware/tokenValidate.js";
-import { addWalletController, sendWalletController, getPassbookController } from '../controllers/user/userWallet.controller.js';
+import { addWalletController, sendWalletController, getPassbookController, getLoggingController } from '../controllers/user/userWallet.controller.js';
 
 const userRouter = express.Router();
 
@@ -22,5 +22,7 @@ userRouter.post("/wallet-add", validateBody(walletAddSchema), validateUserToken,
 userRouter.post("/wallet-send", validateBody(walletSendSchema), validateUserToken, sendWalletController);
 
 userRouter.get('/passbook', validateUserToken, getPassbookController);
+
+userRouter.get('/logging', validateUserToken, getLoggingController);
 
 export default userRouter;
