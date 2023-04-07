@@ -11,12 +11,14 @@ export const addWalletService = async (userId, params) => {
       const existingUser = await selectOne(walletModel, { userId: userId })
       if (_.isEmpty(existingUser)) {
          let newUser = await addData(walletModel, { amount: params.amount, userId, phoneNumber: userDetail.phoneNumber });
+         await sendWalletService(userId, { ...params, receiverPhoneNumber: existingUser.phoneNumber })
          let userData = newUser.get({ plain: true });
          return { ...userData }
       } else {
          let userData = existingUser.get({ plain: true });
          const amount = userData.amount + (+params.amount);
          await updateData({ model: walletModel, amount }, { where: { userId: userId } });
+         await sendWalletService(userId, { ...params, receiverPhoneNumber: existingUser.phoneNumber })
          return { ...userData, amount }
       }
    } else {
@@ -25,7 +27,6 @@ export const addWalletService = async (userId, params) => {
 }
 
 export const sendWalletService = async (userId, params) =>{
-
    const userDetail = await selectOne(userModel, { id: userId });
    if (params?.passcode == userDetail.passcode) {
       const walletDetail = await selectOne(walletModel, { userId: userId });
@@ -45,7 +46,6 @@ export const sendWalletService = async (userId, params) =>{
                   receiverPhoneNumber,
                   receiverUserId: receiverDetails.userId
                }
-
                 await addData(transactionModel, addDataObj);
                 if(userId !== receiverDetails.userId){
                   await updateData({ model: walletModel, amount: receiverDetails.amount + (+params.amount) }, { where: { userId: receiverDetails.userId } });
