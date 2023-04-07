@@ -4,7 +4,7 @@ export const signupSchema = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   email: Joi.string().email().required(),
-  phoneNumber: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
+  accountNumber: Joi.number().min(10).required(),
   password: Joi.string().min(8).max(15).required(),
   passcode: Joi.number().min(6).required()
 });
@@ -18,6 +18,5 @@ export const userProfileUpdateSchema = Joi.object({
   firstName: Joi.string(),
   lastName: Joi.string(),
   email: Joi.string().email(),
-  password: Joi.string().min(8).max(15),
-  passcode: Joi.number().min(6)
+ passcode: Joi.number().min(6)
 })

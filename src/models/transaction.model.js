@@ -8,31 +8,23 @@ export const transactionModel = sequelize.define("transaction", {
         primaryKey: true,
         autoIncrement: true
     },
-    senderUserId: {
+    sourceAccountNumber: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
     },
     amount: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
     },
-    senderPhoneNumber:{
-        type: DataTypes.STRING,
-        allowNull:true,
-    },
-    receiverPhoneNumber:{
-        type: DataTypes.STRING,
-        allowNull:true,
-    },
-    receiverUserId:{
+    destinationAccountNumber:{
         type: DataTypes.INTEGER,
-        allowNull:true,
+        allowNull:false,
     },
-    // operationType:{
-    //     type: DataTypes.STRING,
-    //     allowNull:true,
-    //     enum: ['add', 'debit','credit']
-    // },
+    operationType:{
+        type: DataTypes.STRING,
+        allowNull:false,
+        enum: ['add', 'debit','credit']
+    },
 }, { tableName: "transaction" }
 );
 transactionModel.sync({ alter: true });

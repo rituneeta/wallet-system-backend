@@ -28,10 +28,9 @@ export const userModel = sequelize.define("users", {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    phoneNumber:{
+    accountNumber:{
         type: DataTypes.STRING,
-        allowNull:false,
-        // unique:true
+        allowNull:false
     }
 },
     {

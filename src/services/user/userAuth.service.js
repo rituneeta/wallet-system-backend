@@ -7,16 +7,15 @@ import { MESSAGES } from '../../constants/index.js';
 import { walletModel } from "../../models/wallet.model.js";
 
 export const signUpService = async (params) => {
-    const existingUser = await selectOne(userModel, { email: params.email.toLowerCase() })
+    const existingUser = await selectOne(userModel, { email: params.email.toLowerCase(), accountNumber: params.accountNumber })
     if (_.isEmpty(existingUser)) {
         if (params.password) {
             params.password = await bcryptPassword(params.password);
             params.email = params.email.toLowerCase();
-
             let newUser = await addData(userModel, params);
             let userData = newUser.get({ plain: true });
-            await addData(walletModel, { userId: userData.id, amount: 0, phoneNumber: userData.phoneNumber})
-            const response = _.pick(userData, ['id', 'firstName', 'lastName', 'email', 'passcode', 'phoneNumber', 'createdAt', 'updatedAt'])
+            await addData(walletModel, { userId: userData.id, amount: 0, accountNumber: userData.accountNumber})
+            const response = _.pick(userData, ['id', 'firstName', 'lastName', 'email', 'passcode', 'accountNumber', 'createdAt', 'updatedAt'])
             delete userData.password;
             let token = await userTokenResponse(newUser);
             return { ...token, ...response };
@@ -33,7 +32,7 @@ export const loginService = async (params) => {
         let isPasswordMatch = await comparePassword(params.password, userDetails.password)
         if (isPasswordMatch) {
             let token = await userTokenResponse(userDetails);
-            const response = _.pick(userDetails, ['id', 'firstName', 'lastName', 'email','passcode', 'phoneNumber', 'createdAt', 'updatedAt'])
+            const response = _.pick(userDetails, ['id', 'firstName', 'lastName', 'email','passcode', 'accountNumber', 'createdAt', 'updatedAt'])
             return { ...token, ...response }
         } else {
             throw new Error(MESSAGES.invalid_password)

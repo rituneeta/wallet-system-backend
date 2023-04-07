@@ -8,19 +8,13 @@ import _ from 'lodash';
 export const addWalletService = async (userId, params) => {
    const userDetail = await selectOne(userModel, { id: userId });
    if (params?.passcode == userDetail.passcode) {
-      const existingUser = await selectOne(walletModel, { userId: userId })
-      if (_.isEmpty(existingUser)) {
-         let newUser = await addData(walletModel, { amount: params.amount, userId, phoneNumber: userDetail.phoneNumber });
-         await sendWalletService(userId, { ...params, receiverPhoneNumber: existingUser.phoneNumber })
-         let userData = newUser.get({ plain: true });
-         return { ...userData }
-      } else {
-         let userData = existingUser.get({ plain: true });
+        const userWallet = await selectOne(walletModel, { userId })
+         let userData = userWallet.get({ plain: true });
          const amount = userData.amount + (+params.amount);
          await updateData({ model: walletModel, amount }, { where: { userId: userId } });
-         await sendWalletService(userId, { ...params, receiverPhoneNumber: existingUser.phoneNumber })
+         const addTransData= {sourceAccountNumber: userDetail.accountNumber,amount,destinationAccountNumber:userDetail.accountNumber,operationType: 'add'}
+         await addData(transactionModel, addTransData);
          return { ...userData, amount }
-      }
    } else {
       throw new Error(MESSAGES.incorrect_passcode)
    }
@@ -29,24 +23,24 @@ export const addWalletService = async (userId, params) => {
 export const sendWalletService = async (userId, params) =>{
    const userDetail = await selectOne(userModel, { id: userId });
    if (params?.passcode == userDetail.passcode) {
-      const walletDetail = await selectOne(walletModel, { userId: userId });
+      const walletDetail = await selectOne(walletModel, { userId });
       let senderUserWalletData = walletDetail.get({ plain: true });
       if(!_.isEmpty(walletDetail)){
          if(params.amount > senderUserWalletData.amount){
             throw new Error(MESSAGES.insufficient_amount)
          }else{
-            const { amount, receiverPhoneNumber} = params;
-            const receiverWalletData = await selectOne(walletModel, { phoneNumber: receiverPhoneNumber });
+            const { amount, destinationAccountNumber} = params;
+            const receiverWalletData = await selectOne(walletModel, { accountNumber: destinationAccountNumber });
             let receiverDetails = receiverWalletData.get({ plain: true });
             if(!_.isEmpty(receiverDetails)){
-               const addDataObj= {
-                  senderUserId: userId,
-                  amount,
-                  senderPhoneNumber: senderUserWalletData.phoneNumber,
-                  receiverPhoneNumber,
-                  receiverUserId: receiverDetails.userId
-               }
-                await addData(transactionModel, addDataObj);
+               //add credit transaction
+               const addCreditData= {sourceAccountNumber: senderUserWalletData.accountNumber,amount,destinationAccountNumber,operationType: 'credit'}
+               await addData(transactionModel, addCreditData);
+
+                //add debit transaction
+                const addDebitData= {sourceAccountNumber: senderUserWalletData.accountNumber,amount,destinationAccountNumber,operationType: 'debit'}
+                await addData(transactionModel, addDebitData);
+
                 if(userId !== receiverDetails.userId){
                   await updateData({ model: walletModel, amount: receiverDetails.amount + (+params.amount) }, { where: { userId: receiverDetails.userId } });
                   await updateData({ model: walletModel, amount: senderUserWalletData.amount - (+params.amount) }, { where: { userId } });
@@ -65,10 +59,10 @@ export const sendWalletService = async (userId, params) =>{
    }
 }
 
-export const getPassbookService = async(userId, receiverUserId) => {
-   const condition = {
-      senderUserId: userId
-   }
-   if(receiverUserId) condition['receiverUserId'] = receiverUserId;
+export const getPassbookService = async(query) => {
+   const { sourceAccountNumber, destinationAccountNumber } = query;
+   const condition = {}
+   if(sourceAccountNumber) condition['sourceAccountNumber'] = sourceAccountNumber;
+   if(destinationAccountNumber) condition['destinationAccountNumber'] = destinationAccountNumber;
  return await selectAll(transactionModel, condition);
 }

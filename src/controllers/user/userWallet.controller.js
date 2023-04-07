@@ -4,7 +4,7 @@ import { addWalletService, sendWalletService, getPassbookService } from '../../s
 
 export const addWalletController  = async (req, res) => {
     try {
-        const responseFromService = await addWalletService(req?.user?.id, req.body);
+        const responseFromService = await addWalletService(req.user.id, req.body);
         successResponse(res, responseFromService, MESSAGES.success);
     } catch (error) {
         errorResponse(res, error, CODE.error_code);
@@ -13,7 +13,7 @@ export const addWalletController  = async (req, res) => {
 
 export const sendWalletController = async (req, res) => {
     try {
-        const responseFromService = await sendWalletService(req?.user?.id, req.body);
+        const responseFromService = await sendWalletService(req.user.id, req.body);
         successResponse(res, responseFromService, MESSAGES.success);
     } catch (error) {
         errorResponse(res, error, CODE.error_code);
@@ -22,8 +22,7 @@ export const sendWalletController = async (req, res) => {
 
 export const getPassbookController = async(req,res) => {
     try {
-        const receiverUserId = req.query?.receiverUserId
-        const responseFromService = await getPassbookService(req.user.id, receiverUserId);
+        const responseFromService = await getPassbookService(req.query);
         successResponse(res, responseFromService, MESSAGES.success);
     } catch (error) {
         errorResponse(res, error, CODE.error_code);

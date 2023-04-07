@@ -56,11 +56,11 @@ const swaggerDocument = {
             "type": "string"
           },
           {
-            "name": "phoneNumber",
+            "name": "accountNumber",
             "in": "formData",
-            "description": "phoneNumber",
+            "description": "accountNumber",
             "required": true,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "password",
@@ -74,7 +74,7 @@ const swaggerDocument = {
             "in": "formData",
             "description": "passcode",
             "required": true,
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {}
@@ -179,7 +179,7 @@ const swaggerDocument = {
             "in": "formData",
             "description": "User's passcode",
             "required": false,
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {}
@@ -214,7 +214,7 @@ const swaggerDocument = {
             "in": "formData",
             "description": "passcode",
             "required": true,
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {}
@@ -252,11 +252,11 @@ const swaggerDocument = {
             "type": "integer"
           },
           {
-            "name": "receiverPhoneNumber",
+            "name": "destinationAccountNumber",
             "in": "formData",
-            "description": "receiverPhoneNumber",
+            "description": "destinationAccountNumber",
             "required": true,
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {}
@@ -280,7 +280,14 @@ const swaggerDocument = {
             "type": "string"
           },
           {
-            "name": "receiverUserId",
+            "name": "sourceAccountNumber",
+            "in": "query",
+            "description": "get the list on the basis of receiver user Id",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "name": "destinationAccountNumber",
             "in": "query",
             "description": "get the list on the basis of receiver user Id",
             "required": false,

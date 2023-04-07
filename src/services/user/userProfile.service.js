@@ -3,12 +3,12 @@ import { selectOne, updateData } from '../../queryService/queryService.js';
 import _ from 'lodash';
 import { MESSAGES } from '../../constants/index.js';
 
-export const getProfileService = async (user) => {
+export const getProfileDataService = async (user) => {
     let response = await selectOne(userModel, { id: user.id })
-    return _.pick(response, ['id', 'firstName', 'lastName', 'email', 'passcode','phoneNumber', 'createdAt', 'updatedAt'])
+    return _.pick(response, ['id', 'firstName', 'lastName', 'email', 'passcode','accountNumber', 'createdAt', 'updatedAt'])
 }
 
-export const updateUserProfileService = async(params, user) => {
+export const updateProfileService = async(params, user) => {
     let existUser = await selectOne(userModel, { id: user.id })
     if (!_.isEmpty(existUser)){
         let update = {}

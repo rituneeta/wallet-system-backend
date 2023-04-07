@@ -16,8 +16,8 @@ export const walletModel = sequelize.define("wallet", {
         type: DataTypes.INTEGER,
         allowNull: true,
     },
-    phoneNumber:{
-        type: DataTypes.STRING,
+    accountNumber:{
+        type: DataTypes.INTEGER,
         allowNull:false,
     }
 }, { tableName: "wallet" }
