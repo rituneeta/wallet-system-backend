@@ -255,12 +255,12 @@ const swaggerDocument = {
         "responses": {}
       }
     },
-    "/user/passbook": {
+    "/wallet/passbook": {
       "get": {
         "tags": [
-          "User"
+          "Wallet"
         ],
-        "description": "get User Passbook Lists",
+        "description": "get Passbook Lists",
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
@@ -271,21 +271,7 @@ const swaggerDocument = {
             "description": "Enter jwt token for authentication",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "sourceAccountNumber",
-            "in": "query",
-            "description": "get the list on the basis of receiver user Id",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "destinationAccountNumber",
-            "in": "query",
-            "description": "get the list on the basis of receiver user Id",
-            "required": false,
-            "type": "integer"
-          },
+          }
         ],
         "responses": {}
       }

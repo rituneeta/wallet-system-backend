@@ -69,7 +69,7 @@ export const selectAll = async (model, condition, attributes = {}) => {
                     attributes: attributes
                 })
             }
-            if (!_.isEmpty(condition)) {
+            if (condition) {
                 return model.findAll({ where: condition });
             } else {
                 return model.findAll();
@@ -91,5 +91,5 @@ export const addLogging = async (req, res) => {
         request: req.body,
         response: res
     }
-       await addData(loggingModel, logginData);
+   await addData(loggingModel, logginData);
 }

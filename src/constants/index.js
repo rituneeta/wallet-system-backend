@@ -19,7 +19,8 @@ export const MESSAGES = {
   insufficient_amount: "ou have an insufficient balance in your wallet account to perform this transaction.",
   receiver_wallet_not_available: "Invalid receiver account number.",
   incorrect_receiver: "you can't send money to yourself",
-  wallet_user_invalid: "user wallet account not found."
+  wallet_user_invalid: "user wallet account not found.",
+  passbook_not_found: "Passbook of this user is not found."
 }
 
 export const CODE = {

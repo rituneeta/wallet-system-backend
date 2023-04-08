@@ -22,7 +22,7 @@ export const sendWalletController = async (req, res) => {
 
 export const getPassbookController = async (req, res) => {
     try {
-        const responseFromService = await getPassbookService(req.query);
+        const responseFromService = await getPassbookService(req.user.id);
         successResponse(req, res, responseFromService, MESSAGES.fetch_passbook);
     } catch (error) {
         errorResponse(req, res, error, CODE.error_code);

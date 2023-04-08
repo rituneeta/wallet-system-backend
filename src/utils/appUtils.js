@@ -35,6 +35,6 @@ export const bcryptData = async (data) => {
     return bcrypt.hash(data, 10);
 }
 
-export const comparePassword = async (myPlaintextPassword, hash) => {
-    return bcrypt.compare(myPlaintextPassword, hash);
+export const compareData = async (myPlaintext, hash) => {
+    return bcrypt.compare(myPlaintext, hash);
 }

@@ -1,12 +1,14 @@
 import _ from 'lodash';
+import Sequelize from "sequelize";
 import { userModel } from "../../models/users.model.js";
 import { walletModel } from "../../models/wallets.model.js"
 import { transactionModel } from '../../models/transactions.model.js';
-import { loggingModel } from "../../models/logging.model.js";
 import { selectOne, addData, updateData, selectAll } from '../../queryService/queryService.js';
 import { MESSAGES } from '../../constants/index.js';
 import { sequelize } from '../../database.js';
 import { compareData } from '../../utils/appUtils.js';
+
+const Op = Sequelize.Op;
 
 export const addWalletService = async (userId, params) => {
    const userDetail = await selectOne(userModel, { id: userId });
@@ -64,7 +66,7 @@ export const sendWalletService = async (userId, params) => {
                   await addData(transactionModel, addDebitData, { transaction: t });
 
                   //add success credit transaction
-                  const addCreditData = { account_number: receiver_account_number, transaction_amount: amount, source:userDetail.account_number , transaction_type: 'credit', transaction_status: 'Success' }
+                  const addCreditData = { account_number: receiver_account_number, transaction_amount: amount, source: userDetail.account_number, transaction_type: 'credit', transaction_status: 'Success' }
                   await addData(transactionModel, addCreditData, { transaction: t });
 
                   await t.commit();
@@ -76,7 +78,7 @@ export const sendWalletService = async (userId, params) => {
                   await addData(transactionModel, addDebitData);
 
                   //add failed credit transaction
-                  const addCreditData = { account_number: receiver_account_number, transaction_amount: amount, source:userDetail.account_number , transaction_type: 'credit', transaction_status: 'Failed' }
+                  const addCreditData = { account_number: receiver_account_number, transaction_amount: amount, source: userDetail.account_number, transaction_type: 'credit', transaction_status: 'Failed' }
                   await addData(transactionModel, addCreditData);
 
                   throw new Error(MESSAGES.something_went_wrong);
@@ -94,17 +96,13 @@ export const sendWalletService = async (userId, params) => {
    }
 }
 
-export const getPassbookService = async (query) => {
-   const { sourceAccountNumber, destinationAccountNumber } = query;
-   const condition = {}
-   // if (sourceAccountNumber) condition['sourceAccountNumber'] = sourceAccountNumber;
-   // if (destinationAccountNumber) condition['destinationAccountNumber'] = destinationAccountNumber;
-
-   //filter on basis of source acc no filter with both source, dest, add filter on basis of trans type
-
-   return await selectAll(transactionModel, condition);
-}
-
-export const getLoggingService = async () => {
-   return await selectAll(loggingModel);
+export const getPassbookService = async (userId) => {
+   const walletDetail = await selectOne(walletModel, { user_id: userId });
+   if (!_.isEmpty(walletDetail)) {
+      let userWalletData = walletDetail.get({ plain: true });
+      const { account_number } = userWalletData;
+      return await selectAll(transactionModel, { [Op.or]: [{ account_number }, { source: account_number }] });
+   } else {
+      throw new Error(MESSAGES.passbook_not_found)
+   }
 }
