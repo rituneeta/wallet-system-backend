@@ -2,6 +2,7 @@ export const MESSAGES = {
   success: 'Success.',
   signup_success: "Successfully created an account.",
   login_success: "Successfully login!",
+  email_exist: "we can't update the email because this email is already existing and it should be unique.",
   something_went_wrong: "Something went wrong during transaction!!",
   bad_request: "Getting error, due to bad request.",
   token_missing: 'Token missing from header.',

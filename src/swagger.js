@@ -147,16 +147,16 @@ const swaggerDocument = {
             "type": "string"
           },
           {
-            "name": "firstName",
+            "name": "first_name",
             "in": "formData",
-            "description": "User's firstName",
+            "description": "User's first Name",
             "required": false,
             "type": "string"
           },
           {
-            "name": "lastName",
+            "name": "last_name",
             "in": "formData",
-            "description": "User's lastName",
+            "description": "User's last Name",
             "required": false,
             "type": "string"
           },
@@ -172,7 +172,7 @@ const swaggerDocument = {
             "in": "formData",
             "description": "User's passcode",
             "required": false,
-            "type": "integer"
+            "type": "string"
           }
         ],
         "responses": {}

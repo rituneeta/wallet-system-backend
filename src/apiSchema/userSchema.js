@@ -15,8 +15,8 @@ export const loginSchema = Joi.object({
 });
 
 export const userProfileUpdateSchema = Joi.object({
-  firstName: Joi.string(),
-  lastName: Joi.string(),
+  first_name: Joi.string(),
+  last_name: Joi.string(),
   email: Joi.string().email(),
- passcode: Joi.number().min(6)
+  passcode: Joi.string().min(6).max(7)
 })
