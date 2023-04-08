@@ -25,6 +25,11 @@ export const transactionModel = sequelize.define("transactions", {
         allowNull:false,
         enum: ['add', 'debit','credit']
     },
+    transaction_status:{
+        type: DataTypes.STRING,
+        allowNull:false,
+        enum: ['Success', 'Failed']
+    }
 }, { tableName: "transactions" }
 );
 transactionModel.sync({ alter: true });

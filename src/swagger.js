@@ -178,10 +178,10 @@ const swaggerDocument = {
         "responses": {}
       }
     },
-    "/user/wallet-add": {
+    "/wallet/add-money": {
       "post": {
         "tags": [
-          "User"
+          "Wallet"
         ],
         "description": "Add money to wallet",
         "consumes": [
@@ -207,16 +207,16 @@ const swaggerDocument = {
             "in": "formData",
             "description": "passcode",
             "required": true,
-            "type": "integer"
+            "type": "string"
           }
         ],
         "responses": {}
       }
     },
-    "/user/wallet-send": {
+    "/wallet/pay-money": {
       "post": {
         "tags": [
-          "User"
+          "Wallet"
         ],
         "description": "send money to wallet",
         "consumes": [
@@ -245,11 +245,11 @@ const swaggerDocument = {
             "type": "integer"
           },
           {
-            "name": "destinationAccountNumber",
+            "name": "receiver_account_number",
             "in": "formData",
-            "description": "destinationAccountNumber",
+            "description": "Enter receiver account number",
             "required": true,
-            "type": "integer"
+            "type": "string"
           }
         ],
         "responses": {}
@@ -286,27 +286,6 @@ const swaggerDocument = {
             "required": false,
             "type": "integer"
           },
-        ],
-        "responses": {}
-      }
-    },
-    "/user/logging": {
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "description": "get api logging list",
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Enter jwt token for authentication",
-            "required": true,
-            "type": "string"
-          }
         ],
         "responses": {}
       }

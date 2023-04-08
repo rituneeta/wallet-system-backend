@@ -1,7 +1,7 @@
 import _ from "lodash";
 import  Sequelize  from "sequelize";
 import { userTokenResponse } from "../../utils/token-response.js";
-import { bcryptData, comparePassword } from '../../utils/appUtils.js';
+import { bcryptData, compareData } from '../../utils/appUtils.js';
 import {selectOne, addData} from '../../queryService/queryService.js';
 import { userModel } from '../../models/users.model.js';
 import { walletModel } from "../../models/wallets.model.js";
@@ -31,7 +31,7 @@ export const signUpService = async (params) => {
 export const loginService = async (params) => {
     let userDetails = await selectOne(userModel, { email: params.email.toLowerCase() })
     if (userDetails) {
-        let isPasswordMatch = await comparePassword(params.password, userDetails.password)
+        let isPasswordMatch = await compareData(params.password, userDetails.password)
         if (isPasswordMatch) {
             let token = await userTokenResponse(userDetails);
             const response = _.pick(userDetails, ['id', 'first_name', 'last_name', 'email','passcode', 'account_number', 'createdAt', 'updatedAt'])
