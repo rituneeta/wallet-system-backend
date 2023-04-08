@@ -327,22 +327,7 @@ const swaggerDocument = {
         "consumes": [
           "application/x-www-form-urlencoded"
         ],
-        "parameters": [
-          {
-            "name": "sourceAccountNumber",
-            "in": "query",
-            "description": "get the list on the basis of senderUserId",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "name": "destinationAccountNumber",
-            "in": "query",
-            "description": "get the list on the basis of receiverUserId",
-            "required": false,
-            "type": "integer"
-          }
-        ],
+        "parameters": [],
         "responses": {}
       }
     }

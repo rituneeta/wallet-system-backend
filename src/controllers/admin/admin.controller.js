@@ -24,7 +24,7 @@ export const getUserWalletListController = async (req, res) => {
 
 export const getUserTransactionListController = async (req, res) => {
     try {
-        const responseFromService = await getUserTransactionListService(req.query);
+        const responseFromService = await getUserTransactionListService();
         successResponse(req, res, responseFromService, MESSAGES.users_fetched);
     } catch (error) {
         errorResponse(req, res, error, CODE.error_code);

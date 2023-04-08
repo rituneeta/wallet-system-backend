@@ -3,7 +3,7 @@ import { getUsersListController, getUserWalletListController , getUserTransactio
 
 const adminRouter = express.Router();
 
-adminRouter.get('/users', getUsersListController);
+adminRouter.get('/users', getUsersListController); 
 
 adminRouter.get('/users-wallet', getUserWalletListController);
 
