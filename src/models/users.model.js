@@ -8,11 +8,11 @@ export const userModel = sequelize.define("users", {
         primaryKey: true,
         autoIncrement: true
     },
-    firstName: {
+    first_nmae: {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    lastName: {
+    last_name: {
         type: DataTypes.STRING,
         allowNull: true,
     },
@@ -28,13 +28,10 @@ export const userModel = sequelize.define("users", {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    accountNumber:{
+    account_number: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull: false
     }
-},
-    {
-        tableName: "users"
-    }
-);
+}, { tableName: "users" });
+
 userModel.sync({ alter: true });

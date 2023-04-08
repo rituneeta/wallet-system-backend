@@ -1,30 +1,25 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database.js";
 
-export const transactionModel = sequelize.define("transaction", {
+export const walletModel = sequelize.define("wallets", {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true
     },
-    sourceAccountNumber: {
+    user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
     amount: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
-    destinationAccountNumber:{
-        type: DataTypes.INTEGER,
-        allowNull:false,
-    },
-    operationType:{
+    account_number:{
         type: DataTypes.STRING,
         allowNull:false,
-        enum: ['add', 'debit','credit']
-    },
-}, { tableName: "transaction" }
+    }
+}, { tableName: "wallets" }
 );
-transactionModel.sync({ alter: true });
+walletModel.sync({ alter: true });
