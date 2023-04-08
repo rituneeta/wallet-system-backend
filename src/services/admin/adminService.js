@@ -10,7 +10,7 @@ export const getUsersListService = async (userId) => {
 }
 
 export const getUserWalletListService = async (userId) => {
-    const condition = userId ? { userId } : {}
+    const condition = userId ? { user_id: userId } : {}
     return await selectAll(walletModel, condition);
 }
 
