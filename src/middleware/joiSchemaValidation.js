@@ -18,7 +18,7 @@ export const validateBody = (schema) => {
   return (req, res, next) => {
     const error = validateObjectSchema(req.body, schema);
     if (error) {
-      return errorResponse(res, error, CODE.error_code, error[0].message.split('"').join(""))
+      return errorResponse(req,res, error, CODE.error_code, error[0].message.split('"').join(""))
     }
     return next();
   }

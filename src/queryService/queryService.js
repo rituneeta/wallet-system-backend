@@ -7,10 +7,10 @@ import {loggingModel} from '../models/logging.model.js';
 * @req : token, data
 *
 */
-export const addData = async (model, data) => {
+export const addData = async (model, data, transactionObj={}) => {
     if (!_.isEmpty(model)) {
         if (!_.isEmpty(data)) {
-            return model.create(data);
+            return model.create(data,transactionObj);
         } else {
             throw new Error(constants.MESSAGES.request_validation_message);
         }
@@ -35,8 +35,6 @@ export const updateData = async (params, condition) => {
     } else {
         throw new Error(constants.MESSAGES.model_name_required);
     }
-
-
 }
 
 /*
@@ -47,7 +45,7 @@ export const updateData = async (params, condition) => {
 export const selectOne = async (model, condition) => {
     try {
         if (!_.isEmpty(model)) {
-            if (!_.isEmpty(condition)) {
+            if (condition) {
                 return model.findOne({ where: condition });
             } else {
                 throw new Error(constants.MESSAGES.request_validation_message);
@@ -93,5 +91,5 @@ export const addLogging = async (req, res) => {
         request: req.body,
         response: res
     }
-    await addData(loggingModel, logginData);
+       await addData(loggingModel, logginData);
 }

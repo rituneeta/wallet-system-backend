@@ -35,46 +35,46 @@ const swaggerDocument = {
         ],
         "parameters": [
           {
-            "name": "firstName",
+            "name": "first_name",
             "in": "formData",
-            "description": "FirstName",
+            "description": "Enter the first name",
             "required": true,
             "type": "string"
           },
           {
-            "name": "lastName",
+            "name": "last_name",
             "in": "formData",
-            "description": "LastName",
+            "description": "Enter the last name",
             "required": true,
             "type": "string"
           },
           {
             "name": "email",
             "in": "formData",
-            "description": "email",
+            "description": "Enter the email",
             "required": true,
             "type": "string"
           },
           {
-            "name": "accountNumber",
+            "name": "account_number",
             "in": "formData",
-            "description": "accountNumber",
+            "description": "Enter the account Number",
             "required": true,
-            "type": "integer"
+            "type": "string"
           },
           {
             "name": "password",
             "in": "formData",
-            "description": "password",
+            "description": "Enter the password",
             "required": true,
             "type": "string"
           },
           {
             "name": "passcode",
             "in": "formData",
-            "description": "passcode",
+            "description": "Enter the passcode",
             "required": true,
-            "type": "integer"
+            "type": "string"
           }
         ],
         "responses": {}
@@ -90,13 +90,6 @@ const swaggerDocument = {
           "application/x-www-form-urlencoded"
         ],
         "parameters": [
-          {
-            "name": "Authorization",
-            "in": "header",
-            "description": "Enter jwt token for authentication",
-            "required": true,
-            "type": "string"
-          },
           {
             "name": "email",
             "in": "formData",

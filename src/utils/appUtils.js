@@ -31,8 +31,8 @@ export const successResponse = (req,res, params, message) => {
     return res.status(response.status).send(response);
 }
 
-export const bcryptPassword = async (myPlaintextPassword) => {
-    return bcrypt.hash(myPlaintextPassword, 10);
+export const bcryptData = async (data) => {
+    return bcrypt.hash(data, 10);
 }
 
 export const comparePassword = async (myPlaintextPassword, hash) => {
